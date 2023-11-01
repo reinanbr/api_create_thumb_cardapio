@@ -1,5 +1,5 @@
 base_px = 245
-char_px = 4.5
+char_px = 5.5
 
 def resize_for_text(text):
     size = len(text)
