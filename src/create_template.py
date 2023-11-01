@@ -13,8 +13,8 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     font_att = ImageFont.truetype("src/font/roboto/Roboto-Bold.ttf", 13)
     font_date = ImageFont.truetype("src/font/roboto/Roboto-Bold.ttf", 14)
     font_food_name = ImageFont.truetype("src/font/Courgette-Regular.ttf",22)
-    img_ = Image.open(path_img).convert('RGB')
-    img = img_.resize((496, 323))
+    img = Image.open(path_img).convert('RGB')
+    # img = img_.resize((496, 323))
     draw = ImageDraw.Draw(img)
 
     draw.text((10, 70),f'Cárdapio atualizado às {date["hour"]}, \ndo dia {date["date"]}','#000',font=font_att)
