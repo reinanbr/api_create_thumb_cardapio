@@ -11,9 +11,8 @@ from src.create_template import create_painel_food as cpf
 from src.tools.date import get_date_info as gdi
 
 
-date = gdi()
 
-filename = f'thumb_{date["date"]}_{date["hour"]}.png'
+
 
 
 app = FastAPI(debug=True)
@@ -29,8 +28,10 @@ app.add_middleware(
 
 @app.get('/get_thumb')
 async def get_image(food_name:str):
+    date = gdi()
+    filename = f'thumb_{date["date"]}_{date["hour"]}.png'
 
-    path_img = f"/tmp/test.png"
+    path_img = "/tmp/test.png"
     print(f'food_name é {food_name}')
     res_cpf = cpf(food_name,path_img)
 
