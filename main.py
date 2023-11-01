@@ -27,7 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/get_thumb/{food_name}')
+@app.get('/get_thumb')
 async def get_image(food_name:str):
 
     path_img = f"test.png"
