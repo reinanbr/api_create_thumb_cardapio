@@ -1,8 +1,8 @@
 import datetime
-
+import pytz
 def get_date_info():
     # Obtém a data atual
-    data_atual = datetime.datetime.now()
+    data_atual = datetime.datetime.now( pytz.timezone('America/Sao_Paulo'))
 
     # Obtém o dia da semana como um número (0 = segunda-feira, 6 = domingo)
     dia_da_semana = data_atual.weekday()
