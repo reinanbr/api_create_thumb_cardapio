@@ -30,7 +30,7 @@ app.add_middleware(
 @app.get('/get_thumb')
 async def get_image(food_name:str):
 
-    path_img = f"test.png"
+    path_img = f"/tmp/test.png"
     print(f'food_name é {food_name}')
     res_cpf = cpf(food_name,path_img)
 
