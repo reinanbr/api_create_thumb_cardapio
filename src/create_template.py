@@ -4,7 +4,7 @@ from PIL import Image
 from src.tools.date import get_date_info
 from src.tools.resize_for_text import resize_for_text
 
-path_img = 'src/thumb_card.jpg'
+path_img = 'src/templates/thumb_card_november.png'
 date = get_date_info()
 
 
@@ -14,12 +14,12 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     font_date = ImageFont.truetype("src/font/roboto/Roboto-Bold.ttf", 14)
     font_food_name = ImageFont.truetype("src/font/Courgette-Regular.ttf",22)
     img_ = Image.open(path_img).convert('RGB')
-    img = img_.resize((526, 293))
+    img = img_.resize((496, 323))
     draw = ImageDraw.Draw(img)
 
-    draw.text((10, 60),f'Cárdapio atualizado às {date["hour"]}, \ndo dia {date["date"]}','#000',font=font_att)
-    draw.text((10, 265),f'*Sujeito a alterações','#000',font=font_att)
-    draw.text((440,60),f" {date['day_week']}\n{date['date']}",'#000',font=font_date)
+    draw.text((10, 70),f'Cárdapio atualizado às {date["hour"]}, \ndo dia {date["date"]}','#000',font=font_att)
+    draw.text((10, 295),f'*Sujeito a alterações','#000',font=font_att)
+    draw.text((410,70),f" {date['day_week']}\n{date['date']}",'#000',font=font_date)
         
     #parte delicada, devido a otamanho que o nome pode ter
     x = resize_for_text(food_name)
