@@ -4,7 +4,7 @@ from PIL import Image
 from src.tools.date import get_date_info
 from src.tools.resize_for_text import resize_for_text
 
-path_img = 'src/templates/pt2.png'
+path_img = 'src/templates/pt1.png'
 date = get_date_info()
 font_name = "src/font/roboto/Roboto-Medium.ttf"
 
