@@ -1,5 +1,19 @@
 import datetime
 import pytz
+
+
+
+
+def days_new_year():
+    date_now = datetime.datetime.now()
+    new_year = datetime.datetime(date_now.year + 1, 1, 1)
+    diff = new_year - date_now
+    return diff.days
+
+
+
+
+
 def get_date_info():
     # Obtém a data atual
     data_atual = datetime.datetime.now( pytz.timezone('America/Sao_Paulo'))

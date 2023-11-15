@@ -11,10 +11,6 @@ from src.create_template import create_painel_food as cpf
 from src.tools.date import get_date_info as gdi
 
 
-
-
-
-
 app = FastAPI(debug=True)
 origins = ["*"]
 
