@@ -14,7 +14,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     print(f'food name: {food_name}\npath: {path}')
     font_att = ImageFont.truetype(font_name, 55)
     font_date = ImageFont.truetype(font_name, 55)
-    font_date_y = ImageFont.truetype(font_name, 75)
+    font_date_y = ImageFont.truetype(font_name, 65)
     font_food_name = ImageFont.truetype("src/font/Courgette-Regular.ttf",90)
     img = Image.open(path_img).convert('RGB')
     draw = ImageDraw.Draw(img)
