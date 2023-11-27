@@ -47,10 +47,10 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     
     
     
-    draw.text((300,1180),f"Petrolina-PE    {data_now['temperature']:.1f}ºC","#000",font=font_climate)
-    draw.text((1200,1165),f'Humidade: {data_now["humidity"]:.1f}%','grey',font=font_climate_small)
-    draw.text((1200,1225),f'Vento: {(data_now["v"]*3.6):.1f}km/h','grey',font=font_climate_small)
-    draw.text((815,1180),get_emoji_cloud(65),'#000',font=font_emoji)
+    draw.text((280,1180),f"Petrolina-PE    {data_now['temperature']:.1f}ºC","#000",font=font_climate)
+    draw.text((1180,1165),f'Humidade: {data_now["humidity"]:.1f}%','grey',font=font_climate_small)
+    draw.text((1180,1225),f'Vento: {(data_now["v"]*3.6):.1f}km/h','grey',font=font_climate_small)
+    draw.text((795,1180),get_emoji_cloud(65),'#000',font=font_emoji)
     
     x = resize_for_text(food_name)
     draw.text((x,700),food_name,'#000',font=font_food_name)
