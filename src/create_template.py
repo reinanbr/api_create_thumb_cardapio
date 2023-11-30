@@ -51,7 +51,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     
     percent_cloud = (data_now['cloud']+data_now['rain_percent'])
     print(percent_cloud)
-    draw.text((280,1180),f"Petrolina-PE    {(data_now['temperature']+1.1):.1f}ºC","#000",font=font_climate)
+    draw.text((280,1180),f"Petrolina-PE    {(data_now['temperature']+5.1):.1f}ºC","#000",font=font_climate)
     draw.text((1120,1165),f'Humidade: {data_now["humidity"]:.1f}%','grey',font=font_climate_small)
     draw.text((1120,1225),f'Vento: {(data_now["v"]*3.6):.1f}km/h','grey',font=font_climate_small)
     draw.text((760,1180),get_emoji_cloud(percent_cloud),'#000',font=font_emoji)
