@@ -1,8 +1,10 @@
 import requests as req
 
 
-def get_brl():
-    data_usd = req.get('https://api-forex-py.vercel.app/usd?minutes=60').json()
+def get_brl(minutes=1440):
+    data_usd = req.get(f'https://api-forex-py.vercel.app/usd?minutes={minutes}').json()
 
     data_usd_brl = data_usd['dolar']['now_time']['BRL']
+    return data_usd_brl
+
 

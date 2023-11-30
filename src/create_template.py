@@ -4,7 +4,10 @@ from PIL import Image
 from src.tools.date import get_date_info, days_new_year
 from src.tools.resize_for_text import resize_for_text
 from src.tools.get_climate import data_now
+from src.tools.get_usd import get_brl
 
+doll = get_brl(14400)
+print(doll)
 path_img = 'src/templates/pt4.png'
 date = get_date_info()
 font_name = "src/font/roboto/Roboto-Bold.ttf"
@@ -32,9 +35,10 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     font_att = ImageFont.truetype(font_name, 55)
     font_date = ImageFont.truetype(font_name, 55)
     font_date_y = ImageFont.truetype(font_name, 70)
-    font_climate = ImageFont.truetype(font_name_climate,90)
+    font_climate = ImageFont.truetype(font_name_climate,85)
     font_climate_small = ImageFont.truetype(font_name_climate,55)
-    font_emoji = ImageFont.truetype(font_emoji_dir,80)
+    font_doll_small = ImageFont.truetype(font_name_climate,51)
+    font_emoji = ImageFont.truetype(font_emoji_dir,75)
 
     font_food_name = ImageFont.truetype("src/font/Courgette-Regular.ttf",95)
     img = Image.open(path_img).convert('RGB')
@@ -48,9 +52,26 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     percent_cloud = (data_now['cloud']+data_now['rain_percent'])
     print(percent_cloud)
     draw.text((280,1180),f"Petrolina-PE    {(data_now['temperature']+1.1):.1f}ºC","#000",font=font_climate)
-    draw.text((1180,1165),f'Humidade: {data_now["humidity"]:.1f}%','grey',font=font_climate_small)
-    draw.text((1180,1225),f'Vento: {(data_now["v"]*3.6):.1f}km/h','grey',font=font_climate_small)
-    draw.text((790,1180),get_emoji_cloud(percent_cloud),'#000',font=font_emoji)
+    draw.text((1130,1165),f'Humidade: {data_now["humidity"]:.1f}%','grey',font=font_climate_small)
+    draw.text((1130,1225),f'Vento: {(data_now["v"]*3.6):.1f}km/h','grey',font=font_climate_small)
+    draw.text((760,1180),get_emoji_cloud(percent_cloud),'#000',font=font_emoji)
+    
+    cr = f"R$ {doll['currency']:.2f}"
+    cr_str = cr.replace('.',',')
+    color_doll = '#000'
+    sts = ''
+    if doll['status']=='up':
+        color_doll = 'green'
+        sts = '+'
+    elif doll['status'] == 'down':
+        color_doll = 'red'
+        sts = '-'
+    
+    per = f"{sts}{(doll['variation']*100):.2f}%"
+    draw.text((1575,1165),f"USD {per}",color_doll,font=font_doll_small)
+    draw.text((1575,1215),"R$ 4,88",color_doll,font=font_doll_small)
+
+
     
     x = resize_for_text(food_name)
     draw.text((x,700),food_name,'#000',font=font_food_name)

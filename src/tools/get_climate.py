@@ -12,14 +12,15 @@ def get_date_key(dt_now:datetime):
     hours_key = 0
     hours_rest = hours%3
     if hours_rest > 1:
-        hours_key = (hours//3)+3
+        hours_key = ((hours//3)*3)+3
     elif hours_rest==1:
-        hours_key = hours//3
+        hours_key = (hours//3)*3
     else:
         hours_key = hours
     
     date_base = datetime(dt_now.year,dt_now.month,dt_now.day,hours_key,0)
     date_key = date_base.strftime("%d/%m/%Y_%H:%M")
+    print(date_key)
     return date_key
 
 
