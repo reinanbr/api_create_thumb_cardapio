@@ -7,7 +7,7 @@ from src.tools.get_climate import data_now
 from src.tools.get_usd import get_brl
 
 doll = get_brl(14400)
-print(doll)
+print(f"{doll['currency']:.2f}")
 path_img = 'src/templates/pt4.png'
 date = get_date_info()
 font_name = "src/font/roboto/Roboto-Bold.ttf"
@@ -69,7 +69,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     
     per = f"{sts}{(doll['variation']*100):.2f}%"
     draw.text((1575,1165),f"USD {per}",color_doll,font=font_doll_small)
-    draw.text((1575,1215),"R$ 4,88",color_doll,font=font_doll_small)
+    draw.text((1575,1215),f"R$ {doll['curency']:.2f}",color_doll,font=font_doll_small)
 
 
     
