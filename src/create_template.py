@@ -69,7 +69,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     
     per = f"{sts}{(doll['variation']*100):.2f}%"
     draw.text((1575,1165),f"USD {per}",color_doll,font=font_doll_small)
-    draw.text((1575,1215),f"R$ {cr_str}",color_doll,font=font_doll_small)
+    draw.text((1575,1215),f"{cr_str}",color_doll,font=font_doll_small)
 
 
     
