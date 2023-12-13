@@ -9,10 +9,15 @@ from src.tools.get_usd import get_brl
 doll = get_brl(14400)
 print(f"{doll['currency']:.2f}")
 path_img = 'src/templates/pt4.png'
+img_path_cord = 'src/templates/cordao.png'
+img_path_arv = 'src/templates/arvore.png'
+img_path_chap = 'src/templates/gorro.png'
 date = get_date_info()
+
 font_name = "src/font/roboto/Roboto-Bold.ttf"
 font_name_climate = "src/font/roboto/Roboto-Italic.ttf"
 font_emoji_dir = 'src/font/Noto_Emoji/static/NotoEmoji-Bold.ttf'
+
 days_year = days_new_year()
 
 
@@ -41,7 +46,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     font_emoji = ImageFont.truetype(font_emoji_dir,75)
 
     font_food_name = ImageFont.truetype("src/font/Courgette-Regular.ttf",95)
-    img = Image.open(path_img).convert('RGB')
+    img = Image.open(path_img).convert('RGBA')
     draw = ImageDraw.Draw(img)
 
     draw.text((10, 350),f'Cárdapio atualizado às {date["hour"]}, \ndo dia {date["date"]}','#000',font=font_att)
@@ -65,19 +70,47 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
         sts = '+'
     elif doll['status'] == 'down':
         color_doll = 'red'
-        sts = '-'
+        sts = ''
     
     per = f"{sts}{(doll['variation']*100):.2f}%"
     draw.text((1575,1165),f"USD {per}",color_doll,font=font_doll_small)
     draw.text((1575,1215),f"{cr_str}",color_doll,font=font_doll_small)
 
-
-    
     x = resize_for_text(food_name)
     draw.text((x,700),food_name,'#000',font=font_food_name)
     
-    img.save(path)
+    #cordão vermelho
+    img_cord = Image.open(img_path_cord).convert('RGBA')
+    base_loc = [140,440]
+    img_cord = img_cord.resize((int(img_cord.size[0]/2),int(img_cord.size[1]/2)),Image.ANTIALIAS)
+    #print(img_cord.size,img.size)
+    loc_cord = (base_loc[0],base_loc[1],base_loc[0]+img_cord.size[0],base_loc[1]+img_cord.size[1])
+    #print(loc_cord)
+    img.paste(img_cord,loc_cord,img_cord)
+    
+    #arvore
+    img_arv = Image.open(img_path_arv).convert('RGBA')
+    base_loc = [1380,640]
+    img_arv = img_arv.resize((int(img_arv.size[0]),int(img_arv.size[1])),Image.ANTIALIAS)
+    #print(img_cord.size,img.size)
+    loc_arv = (base_loc[0],base_loc[1],base_loc[0]+img_arv.size[0],base_loc[1]+img_arv.size[1])
+    #print(loc_cord)
+    img.paste(img_arv,loc_arv,img_arv)
+    
 
+   
+    
+    #chapeu
+    img_chap = Image.open(img_path_chap).convert('RGBA')
+    base_loc = [-10,-10]
+    img_chap = img_chap.resize((int(img_chap.size[0]/8),int(img_chap.size[1]/8)),Image.ANTIALIAS)
+    print(img_chap.size,img.size)
+    loc_chap = (base_loc[0],base_loc[1],base_loc[0]+img_chap.size[0],base_loc[1]+img_chap.size[1])
+    #print(loc_cord)
+    img.paste(img_chap,loc_chap,img_chap)
+   
+   
+    img.save(path)
 
 
 def create_painel_food(food_name:str,path:str='test.png'):
