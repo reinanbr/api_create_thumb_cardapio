@@ -5,6 +5,7 @@ from src.tools.date import get_date_info, days_new_year
 from src.tools.resize_for_text import resize_for_text
 from src.tools.get_climate import data_now
 from src.tools.get_usd import get_brl
+import PIL
 
 doll = get_brl(14400)
 print(f"{doll['currency']:.2f}")
@@ -51,8 +52,8 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
 
     draw.text((10, 350),f'Cárdapio atualizado às {date["hour"]}, \ndo dia {date["date"]}','#000',font=font_att)
     draw.text((10, 1315),f'*Sujeito a alterações','#000',font=font_att)
-    draw.text((1750,350),f" {date['day_week']}\n{date['date']}",'#000',font=font_date)
-    draw.text((1650,50),f"FALTAM\n{days_new_year()} DIAS\nPARA 2024🎉",'#fff',font=font_date_y)
+    draw.text((1735,350),f" {date['day_week']}\n  {date['date']}",'#000',font=font_date)
+    draw.text((1650,50),f"FALTAM\n{days_new_year()} DIAS\nPARA 2025🎉",'#fff',font=font_date_y)
     
     percent_cloud = (data_now['cloud']+data_now['rain_percent'])
     print(percent_cloud)
@@ -79,37 +80,7 @@ def _create_painel_food_(food_name:str,path:str='test.png'):
     x = resize_for_text(food_name)
     draw.text((x,700),food_name,'#000',font=font_food_name)
     
-    #cordão vermelho
-    img_cord = Image.open(img_path_cord).convert('RGBA')
-    base_loc = [140,440]
-    img_cord = img_cord.resize((int(img_cord.size[0]/2),int(img_cord.size[1]/2)),Image.ANTIALIAS)
-    #print(img_cord.size,img.size)
-    loc_cord = (base_loc[0],base_loc[1],base_loc[0]+img_cord.size[0],base_loc[1]+img_cord.size[1])
-    #print(loc_cord)
-    img.paste(img_cord,loc_cord,img_cord)
-    
-    #arvore
-    img_arv = Image.open(img_path_arv).convert('RGBA')
-    base_loc = [1380,640]
-    img_arv = img_arv.resize((int(img_arv.size[0]),int(img_arv.size[1])),Image.ANTIALIAS)
-    #print(img_cord.size,img.size)
-    loc_arv = (base_loc[0],base_loc[1],base_loc[0]+img_arv.size[0],base_loc[1]+img_arv.size[1])
-    #print(loc_cord)
-    img.paste(img_arv,loc_arv,img_arv)
-    
 
-   
-    
-    #chapeu
-    img_chap = Image.open(img_path_chap).convert('RGBA')
-    base_loc = [-10,-10]
-    img_chap = img_chap.resize((int(img_chap.size[0]/8),int(img_chap.size[1]/8)),Image.ANTIALIAS)
-    print(img_chap.size,img.size)
-    loc_chap = (base_loc[0],base_loc[1],base_loc[0]+img_chap.size[0],base_loc[1]+img_chap.size[1])
-    #print(loc_cord)
-    img.paste(img_chap,loc_chap,img_chap)
-   
-   
     img.save(path)
 
 
